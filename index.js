@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import http from "node:http";
 import path from "node:path";
-import { createBareServer } from "@tomphttp/bare-server-node";
+import { createBareServer } from "@nebula-services/bare-server-node";
 import chalk from "chalk";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -17,7 +17,7 @@ console.log(chalk.yellow("🚀 Starting server..."));
 const __dirname = process.cwd();
 const server = http.createServer();
 const app = express();
-const bareServer = createBareServer("/ov/");
+const bareServer = createBareServer("/fq/");
 const PORT = process.env.PORT || 8080;
 const cache = new Map();
 const CACHE_TTL = 30 * 24 * 60 * 60 * 1000; // Cache for 30 Days
@@ -46,9 +46,9 @@ app.get("/e/*", async (req, res, next) => {
     }
 
     const baseUrls = {
-      "/e/1/": "https://raw.githubusercontent.com/v-5x/x/fixy/",
-      "/e/2/": "https://raw.githubusercontent.com/ypxa/y/main/",
-      "/e/3/": "https://raw.githubusercontent.com/ypxa/w/master/",
+      "/e/1/": "https://raw.githubusercontent.com/qrs/x/fixy/",
+      "/e/2/": "https://raw.githubusercontent.com/3v1/V5-Assets/main/",
+      "/e/3/": "https://raw.githubusercontent.com/3v1/V5-Retro/master/",
     };
 
     let reqTarget;
@@ -96,19 +96,26 @@ app.use(express.urlencoded({ extended: true }));
 
 const blocked = Object.keys(config.blocked);
 
-app.get("/assets/js/main.js", (req, res) => {
+app.get("/assets/js/m.js", (req, res) => {
   const hostname = req.hostname;
-  const main = path.join(__dirname, "static/assets/js/main.js");
+
+  const isBlocked = blocked.some(domain => {
+    if (hostname === domain) return true;
+    return hostname.endsWith(`.${domain}`);
+  });
+
+  const main = path.join(__dirname, "static/assets/js/m.js");
+
+  // console.log(`Checking hostname: ${hostname}, Blocked: ${isBlocked}`);
 
   try {
-    if (blocked.includes(hostname)) {
+    if (isBlocked) {
       fs.readFile(main, "utf8", (err, data) => {
         if (err) {
           console.error("Error reading the file:", err);
           return res.status(500).send("Something went wrong.");
         }
-        const script = data.split("\n").slice(8).join("\n");
-        // console.log(`Rewriting for hostname: ${hostname}`);
+        const script = data.split("\n").slice(9).join("\n");
         res.type("application/javascript").send(script);
       });
     } else {
@@ -121,14 +128,13 @@ app.get("/assets/js/main.js", (req, res) => {
 });
 
 app.use(express.static(path.join(__dirname, "static")));
-app.use("/ov", cors({ origin: true }));
+app.use("/fq", cors({ origin: true }));
 
 const routes = [
-  { path: "/as", file: "apps.html" },
-  { path: "/gm", file: "games.html" },
-  { path: "/st", file: "settings.html" },
-  { path: "/ta", file: "tabs.html" },
-  { path: "/ts", file: "tools.html" },
+  { path: "/yz", file: "apps.html" },
+  { path: "/up", file: "games.html" },
+  { path: "/vk", file: "settings.html" },
+  { path: "/rx", file: "tabs.html" },
   { path: "/", file: "index.html" },
   { path: "/tos", file: "tos.html" },
   { path: "/privacy", file: "privacy.html" },

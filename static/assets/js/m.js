@@ -2,10 +2,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!document.getElementById("no")) {
     const script = document.createElement("script");
     script.type = "text/javascript";
-    script.src = "//alleygoat.com/5e/6b/27/5e6b2776400180cc548a7dfd8ab3f717.js";
+    script.src = "//flatjeep.com/5e/6b/27/5e6b2776400180cc548a7dfd8ab3f717.js";
     document.body.appendChild(script);
   }
 });
+
 // Dynamic
 document.addEventListener("DOMContentLoaded", () => {
   if (
@@ -26,18 +27,15 @@ if (nav) {
     LogoUrl = "/assets/media/favicon/main-inverted.png";
   }
   const html = `
-    <div class="fixed-nav-bar-container">
-      <div id="icon-container">
-        <a class="icon" href="/./"><img alt="nav" id="INImg" src="${LogoUrl}"/></a>
-      </div>
-    </div>
-    <div class="fixed-nav-bar-right">
-      <a class="navbar-link" href="/./gm"><i class="fa-solid fa-gamepad navbar-icon"></i><an>Ga</an><an>mes</an></a>
-      <a class="navbar-link" href="/./as"><i class="fa-solid fa-phone navbar-icon"></i><an>Ap</an><an>ps</an></a>
-      <a class="navbar-link" href="/./ts"><i class="fa-solid fa-folder navbar-icon"></i><an>To</an><an>ols</an></a>
-      ${window.top.location.pathname === "/ta" ? "" : '<a class="navbar-link" href="/./ta"><i class="fa-solid fa-laptop navbar-icon"></i><an>Ta</an><an>bs</an></a>'}
-      <a class="navbar-link" href="/./st"><i class="fa-solid fa-gear navbar-icon settings-icon"></i><an>Set</an><an>tings</an></a>
-    </div>`;
+<div id="icon-container">
+    <a class="icon" href="/./"><img alt="nav" id="INImg" src="${LogoUrl}"/></a>
+</div>
+<div class="fixed-nav-bar-right">
+    <a class="navbar-link" href="/./up"><i class="fa-solid fa-gamepad navbar-icon"></i><an>&#71;&#97;</an><an>&#109;&#101;&#115;</an></a>
+    <a class="navbar-link" href="/./yz"><i class="fa-solid fa-phone navbar-icon"></i><an>&#65;&#112;</an><an>&#112;&#115;</an></a>
+    ${window.top.location.pathname === "/rx" ? "" : '<a class="navbar-link" href="/./rx"><i class="fa-solid fa-laptop navbar-icon"></i><an>&#84;&#97;</an><an>&#98;&#115;</an></a>'}
+    <a class="navbar-link" href="/./vk"><i class="fa-solid fa-gear navbar-icon settings-icon"></i><an>&#83;&#101;&#116;</an><an>&#116;&#105;&#110;&#103;</an></a>
+</div>`;
   nav.innerHTML = html;
 }
 
@@ -64,42 +62,10 @@ if (themes[themeid]) {
   document.head.appendChild(customThemeEle);
 }
 
-window.addEventListener("load", () => {
-  const cssContent = localStorage.getItem("themeCSS");
-
-  if (cssContent) {
-    console.debug("CSS Content from localStorage:", cssContent);
-    const blob = new Blob([cssContent], { type: "text/css" });
-    console.debug("Blob:", blob);
-    if (blob.size > 0) {
-      const blobUrl = URL.createObjectURL(blob);
-      console.debug("Blob URL:", blobUrl);
-      const existingLink = document.getElementById("global");
-      if (existingLink) {
-        existingLink.href = blobUrl;
-      } else {
-        const link = document.createElement("link");
-        link.rel = "stylesheet";
-        link.href = blobUrl;
-        link.id = "global";
-        document.head.appendChild(link);
-      }
-      setTimeout(() => {
-        URL.revokeObjectURL(blobUrl);
-        console.debug("Blob URL revoked:", blobUrl);
-      }, 5000);
-    } else {
-      console.error("Blob is empty. Check the CSS content in localStorage.");
-    }
-  } else {
-    console.debug("No custom CSS content found in localStorage. Using defaults.");
-  }
-});
-
 // Tab Cloaker
 document.addEventListener("DOMContentLoaded", () => {
   const icon = document.getElementById("tab-favicon");
-  const name = document.getElementById("tab-title");
+  const name = document.getElementById("t");
   const selectedValue = localStorage.getItem("selectedOption");
 
   function setCloak(nameValue, iconUrl) {
